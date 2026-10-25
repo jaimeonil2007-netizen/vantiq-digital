@@ -500,10 +500,10 @@
         });
       });
 
-      const form = document.getElementById('leadForm');
+            const form = document.getElementById('leadForm');
       const status = document.getElementById('formStatus');
       const businessEmail = 'jaimeonil2007@gmail.com';
-      const formspreeEndpoint = '';
+      const formspreeEndpoint = 'https://formspree.io/f/xzeeddbk';
 
       function showStatus(message) {
         status.textContent = message;
@@ -564,23 +564,15 @@
               throw new Error('Formspree submission failed.');
             }
 
+            
             form.reset();
-            showStatus('Thank you. Your request was sent successfully.');
+            showStatus('Your inquiry was sent successfully!');
             return;
           } catch (error) {
-            showStatus('There was a problem sending the request. Please try again or use your email app instead.');
+            showStatus('There was a problem sending your inquiry. Please try again.');
             return;
           }
         }
-
-        const subject = encodeURIComponent(`Website inquiry: ${payload.service}`);
-        const body = encodeURIComponent(
-          `Name: ${payload.name}\nEmail: ${payload.email}\nService: ${payload.service}\n\nProject details:\n${payload.message}`
-        );
-
-        window.location.href = `mailto:${businessEmail}?subject=${subject}&body=${body}`;
-        form.reset();
-        showStatus('Your email app is opening so you can send the inquiry.');
       });
     </script>
   </body>
